@@ -1,5 +1,5 @@
 const sqlite3 = require('sqlite3');
-const db = new sqlite3.Database('./database.sqlite');
+const db = new sqlite3.Database(process.env.TEST_DATABASE || './database.sqlite');
 
 let artistId, seriesId;
 
@@ -16,7 +16,7 @@ db.get("SELECT name FROM sqlite_master WHERE type='table' AND name='Artist'", (e
         if (error) {
           throw new Error(error);
         }
-        console.log('seeded');
+        
         artistId = this.lastID;
       });
 
